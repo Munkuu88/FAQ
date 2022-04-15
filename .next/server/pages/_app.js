@@ -1,258 +1,86 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (function() {
 var exports = {};
-exports.id = 888;
-exports.ids = [888];
+exports.id = "pages/_app";
+exports.ids = ["pages/_app"];
 exports.modules = {
 
-/***/ 5006:
+/***/ "./layout/footer.tsx":
+/*!***************************!*\
+  !*** ./layout/footer.tsx ***!
+  \***************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": function() { return /* binding */ _app; }
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(5282);
-// EXTERNAL MODULE: external "@chakra-ui/react"
-var react_ = __webpack_require__(3426);
-// EXTERNAL MODULE: ./theme/index.ts
-var theme = __webpack_require__(3836);
-// EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__(1664);
-// EXTERNAL MODULE: ./node_modules/react-icons/cg/index.esm.js
-var index_esm = __webpack_require__(471);
-// EXTERNAL MODULE: ./node_modules/react-icons/md/index.esm.js
-var md_index_esm = __webpack_require__(5434);
-;// CONCATENATED MODULE: ./layout/footer.tsx
-
-
-
-
-
-
-
-const details = [{
-  name: " БАЙГАЛЬ ЭХ ЛИЦЕЙ АХЛАХ СУРГУУЛЬ ",
-  link: "/"
-}, {
-  name: "ЭКОЛОГИЙН БОЛОВСРОЛЫН ТӨВ",
-  link: "/"
-}, {
-  name: " ДОТООД ДҮРЭМ ЖУРАМ",
-  link: "/"
-}, {
-  name: " ЗАХИРГААНЫ ЗӨВЛӨЛИЙН МЭДЭЭЛЭЛ",
-  link: "/"
-}, {
-  name: "АЖЛЫН БАЙР"
-}];
-const contacts = [{
-  icon: md_index_esm/* MdLocationPin */.vcr,
-  text: "Их сургуулийн гудамж - 1, Бага тойруу, Сүхбаатар дүүрэг, Улаанбаатар"
-}, {
-  icon: md_index_esm/* MdPhone */.IXo,
-  text: "75754400, 77307730-1163"
-}, {
-  icon: md_index_esm/* MdEmail */.ixJ,
-  text: "news@num.edu.mn"
-}];
-function Footer() {
-  return /*#__PURE__*/jsx_runtime_.jsx(react_.Flex, {
-    justifyContent: "center",
-    pt: ["50px", "30px"],
-    pb: ["100px", "30px"],
-    borderTop: "1px solid gray",
-    bg: "#153a75",
-    color: "white",
-    children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.SimpleGrid, {
-      w: "100%",
-      maxW: theme/* maxWidth */.k,
-      columns: [1, 3],
-      gap: [8, 4],
-      children: [/*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-        href: "/",
-        children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.HStack, {
-          h: "fit-content",
-          cursor: "pointer",
-          children: [/*#__PURE__*/jsx_runtime_.jsx(react_.Box, {
-            bg: "url(https://www.num.edu.mn/img/logo.png)",
-            bgPos: "center",
-            bgSize: "cover",
-            boxSize: "60px"
-          }), /*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-            fontWeight: "bold",
-            fontSize: "lg",
-            children: "MUIS - FAQ"
-          })]
-        })
-      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.VStack, {
-        w: "100%",
-        alignItems: "unset",
-        spacing: "15px",
-        children: [/*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-          fontSize: "lg",
-          fontWeight: "500",
-          children: "\u0425\u043E\u043B\u0431\u043E\u043E\u0441\u0443\u0443\u0434"
-        }), details.map((el, ind) => {
-          return /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-            href: `${el.link}`,
-            children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.HStack, {
-              cursor: "pointer",
-              children: [/*#__PURE__*/jsx_runtime_.jsx(react_.Icon, {
-                as: index_esm/* CgDetailsMore */.bRw
-              }), /*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-                fontSize: "sm",
-                children: el.name
-              })]
-            })
-          }, ind);
-        })]
-      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.VStack, {
-        w: "100%",
-        alignItems: "unset",
-        spacing: "15px",
-        children: [/*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-          fontSize: "lg",
-          fontWeight: "500",
-          children: "\u0425\u043E\u043B\u0431\u043E\u0433\u0434\u043E\u0445"
-        }), contacts.map((el, ind) => {
-          return /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.HStack, {
-            children: [/*#__PURE__*/jsx_runtime_.jsx(react_.Icon, {
-              as: el.icon
-            }), /*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-              fontSize: "sm",
-              children: el.text
-            })]
-          }, ind);
-        })]
-      })]
-    })
-  });
-}
-;// CONCATENATED MODULE: ./layout/header.tsx
-
-
-
-
-
-const header_details = [{
-  text: "Асуулт нэмэх",
-  link: "/addQuestion"
-}, {
-  text: "Хайх",
-  link: "/search"
-}];
-function Header() {
-  return /*#__PURE__*/jsx_runtime_.jsx(react_.Box, {
-    w: "100%",
-    pos: "fixed",
-    borderBottom: "1px solid black",
-    zIndex: "1",
-    bg: "#1b4587",
-    color: "white",
-    children: /*#__PURE__*/jsx_runtime_.jsx(react_.Flex, {
-      justifyContent: "center",
-      py: "20px",
-      children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.Flex, {
-        justifyContent: "space-between",
-        w: "100%",
-        maxW: theme/* maxWidth */.k,
-        children: [/*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-          href: "/",
-          children: /*#__PURE__*/jsx_runtime_.jsx(react_.Box, {
-            cursor: "pointer",
-            bg: "url(https://www.num.edu.mn/img/logo.png)",
-            bgPos: "center",
-            bgSize: "cover",
-            boxSize: "50px"
-          })
-        }), /*#__PURE__*/jsx_runtime_.jsx(react_.HStack, {
-          spacing: "20px",
-          children: header_details.map(el => {
-            return /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {
-              href: `${el.link}`,
-              children: /*#__PURE__*/jsx_runtime_.jsx(react_.Text, {
-                textTransform: "uppercase",
-                fontWeight: "bold",
-                cursor: "pointer",
-                children: el.text
-              }, el.link)
-            }, el.link);
-          })
-        })]
-      })
-    })
-  });
-}
-;// CONCATENATED MODULE: ./layout/index.tsx
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-function Layout({
-  Component,
-  pageProps
-}) {
-  return /*#__PURE__*/(0,jsx_runtime_.jsxs)(react_.Flex, {
-    flexDir: "column",
-    minH: "100vh",
-    children: [/*#__PURE__*/jsx_runtime_.jsx(Header, {}), /*#__PURE__*/jsx_runtime_.jsx(react_.Box, {
-      w: "100%",
-      h: "75px"
-    }), /*#__PURE__*/jsx_runtime_.jsx(Component, _objectSpread({}, pageProps)), /*#__PURE__*/jsx_runtime_.jsx(react_.Flex, {
-      flexGrow: 1
-    }), /*#__PURE__*/jsx_runtime_.jsx(Footer, {})]
-  });
-}
-;// CONCATENATED MODULE: ./pages/_app.tsx
-
-
-function _app_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _app_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _app_ownKeys(Object(source), true).forEach(function (key) { _app_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _app_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _app_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-function MyApp(AppProps) {
-  return /*#__PURE__*/jsx_runtime_.jsx(react_.ChakraProvider, {
-    children: /*#__PURE__*/jsx_runtime_.jsx(Layout, _app_objectSpread({}, AppProps))
-  });
-}
-
-/* harmony default export */ var _app = (MyApp);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Footer\": function() { return /* binding */ Footer; }\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ \"@chakra-ui/react\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../theme */ \"./theme/index.ts\");\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ \"./node_modules/next/link.js\");\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_icons_cg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-icons/cg */ \"./node_modules/react-icons/cg/index.esm.js\");\n/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/md */ \"./node_modules/react-icons/md/index.esm.js\");\n\nvar _jsxFileName = \"/Users/saihnaamunhuu/Documents/Faq-diplom/layout/footer.tsx\";\n\n\n\n\n\nconst details = [{\n  name: \" БАЙГАЛЬ ЭХ ЛИЦЕЙ АХЛАХ СУРГУУЛЬ \",\n  link: \"/\"\n}, {\n  name: \"ЭКОЛОГИЙН БОЛОВСРОЛЫН ТӨВ\",\n  link: \"/\"\n}, {\n  name: \" ДОТООД ДҮРЭМ ЖУРАМ\",\n  link: \"/\"\n}, {\n  name: \" ЗАХИРГААНЫ ЗӨВЛӨЛИЙН МЭДЭЭЛЭЛ\",\n  link: \"/\"\n}, {\n  name: \"АЖЛЫН БАЙР\"\n}];\nconst contacts = [{\n  icon: react_icons_md__WEBPACK_IMPORTED_MODULE_4__.MdLocationPin,\n  text: \"Их сургуулийн гудамж - 1, Бага тойруу, Сүхбаатар дүүрэг, Улаанбаатар\"\n}, {\n  icon: react_icons_md__WEBPACK_IMPORTED_MODULE_4__.MdPhone,\n  text: \"75754400, 77307730-1163\"\n}, {\n  icon: react_icons_md__WEBPACK_IMPORTED_MODULE_4__.MdEmail,\n  text: \"news@num.edu.mn\"\n}];\nfunction Footer() {\n  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {\n    justifyContent: \"center\",\n    pt: [\"50px\", \"30px\"],\n    pb: [\"100px\", \"30px\"],\n    borderTop: \"1px solid gray\",\n    bg: \"#153a75\",\n    color: \"white\",\n    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.SimpleGrid, {\n      w: \"100%\",\n      maxW: _theme__WEBPACK_IMPORTED_MODULE_2__.maxWidth,\n      columns: [1, 3],\n      gap: [8, 4],\n      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {\n        href: \"/\",\n        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.HStack, {\n          h: \"fit-content\",\n          cursor: \"pointer\",\n          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {\n            bg: \"url(https://www.num.edu.mn/img/logo.png)\",\n            bgPos: \"center\",\n            bgSize: \"cover\",\n            boxSize: \"60px\"\n          }, void 0, false, {\n            fileName: _jsxFileName,\n            lineNumber: 45,\n            columnNumber: 13\n          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n            fontWeight: \"bold\",\n            fontSize: \"lg\",\n            children: \"MUIS - FAQ\"\n          }, void 0, false, {\n            fileName: _jsxFileName,\n            lineNumber: 51,\n            columnNumber: 13\n          }, this)]\n        }, void 0, true, {\n          fileName: _jsxFileName,\n          lineNumber: 44,\n          columnNumber: 11\n        }, this)\n      }, void 0, false, {\n        fileName: _jsxFileName,\n        lineNumber: 43,\n        columnNumber: 9\n      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.VStack, {\n        w: \"100%\",\n        alignItems: \"unset\",\n        spacing: \"15px\",\n        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n          fontSize: \"lg\",\n          fontWeight: \"500\",\n          children: \"\\u0425\\u043E\\u043B\\u0431\\u043E\\u043E\\u0441\\u0443\\u0443\\u0434\"\n        }, void 0, false, {\n          fileName: _jsxFileName,\n          lineNumber: 58,\n          columnNumber: 11\n        }, this), details.map((el, ind) => {\n          return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {\n            href: `${el.link}`,\n            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.HStack, {\n              cursor: \"pointer\",\n              children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {\n                as: react_icons_cg__WEBPACK_IMPORTED_MODULE_5__.CgDetailsMore\n              }, void 0, false, {\n                fileName: _jsxFileName,\n                lineNumber: 65,\n                columnNumber: 19\n              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n                fontSize: \"sm\",\n                children: el.name\n              }, void 0, false, {\n                fileName: _jsxFileName,\n                lineNumber: 66,\n                columnNumber: 19\n              }, this)]\n            }, void 0, true, {\n              fileName: _jsxFileName,\n              lineNumber: 64,\n              columnNumber: 17\n            }, this)\n          }, ind, false, {\n            fileName: _jsxFileName,\n            lineNumber: 63,\n            columnNumber: 15\n          }, this);\n        })]\n      }, void 0, true, {\n        fileName: _jsxFileName,\n        lineNumber: 57,\n        columnNumber: 9\n      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.VStack, {\n        w: \"100%\",\n        alignItems: \"unset\",\n        spacing: \"15px\",\n        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n          fontSize: \"lg\",\n          fontWeight: \"500\",\n          children: \"\\u0425\\u043E\\u043B\\u0431\\u043E\\u0433\\u0434\\u043E\\u0445\"\n        }, void 0, false, {\n          fileName: _jsxFileName,\n          lineNumber: 73,\n          columnNumber: 11\n        }, this), contacts.map((el, ind) => {\n          return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.HStack, {\n            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {\n              as: el.icon\n            }, void 0, false, {\n              fileName: _jsxFileName,\n              lineNumber: 79,\n              columnNumber: 17\n            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n              fontSize: \"sm\",\n              children: el.text\n            }, void 0, false, {\n              fileName: _jsxFileName,\n              lineNumber: 80,\n              columnNumber: 17\n            }, this)]\n          }, ind, true, {\n            fileName: _jsxFileName,\n            lineNumber: 78,\n            columnNumber: 15\n          }, this);\n        })]\n      }, void 0, true, {\n        fileName: _jsxFileName,\n        lineNumber: 72,\n        columnNumber: 9\n      }, this)]\n    }, void 0, true, {\n      fileName: _jsxFileName,\n      lineNumber: 42,\n      columnNumber: 7\n    }, this)\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 34,\n    columnNumber: 5\n  }, this);\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zb3VyY2UtY29kZS8uL2xheW91dC9mb290ZXIudHN4PzhhODciXSwibmFtZXMiOlsiZGV0YWlscyIsIm5hbWUiLCJsaW5rIiwiY29udGFjdHMiLCJpY29uIiwiTWRMb2NhdGlvblBpbiIsInRleHQiLCJNZFBob25lIiwiTWRFbWFpbCIsIkZvb3RlciIsIm1heFdpZHRoIiwibWFwIiwiZWwiLCJpbmQiLCJDZ0RldGFpbHNNb3JlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBRUEsTUFBTUEsT0FBTyxHQUFHLENBQ2Q7QUFBRUMsTUFBSSxFQUFFLG1DQUFSO0FBQTZDQyxNQUFJLEVBQUU7QUFBbkQsQ0FEYyxFQUVkO0FBQUVELE1BQUksRUFBRSwyQkFBUjtBQUFxQ0MsTUFBSSxFQUFFO0FBQTNDLENBRmMsRUFHZDtBQUFFRCxNQUFJLEVBQUUscUJBQVI7QUFBK0JDLE1BQUksRUFBRTtBQUFyQyxDQUhjLEVBSWQ7QUFBRUQsTUFBSSxFQUFFLGdDQUFSO0FBQTBDQyxNQUFJLEVBQUU7QUFBaEQsQ0FKYyxFQUtkO0FBQUVELE1BQUksRUFBRTtBQUFSLENBTGMsQ0FBaEI7QUFRQSxNQUFNRSxRQUFRLEdBQUcsQ0FDZjtBQUNFQyxNQUFJLEVBQUVDLHlEQURSO0FBRUVDLE1BQUksRUFBRTtBQUZSLENBRGUsRUFLZjtBQUFFRixNQUFJLEVBQUVHLG1EQUFSO0FBQWlCRCxNQUFJLEVBQUU7QUFBdkIsQ0FMZSxFQU1mO0FBQUVGLE1BQUksRUFBRUksbURBQVI7QUFBaUJGLE1BQUksRUFBRTtBQUF2QixDQU5lLENBQWpCO0FBU08sU0FBU0csTUFBVCxHQUFrQjtBQUN2QixzQkFDRSw4REFBQyxrREFBRDtBQUNFLGtCQUFjLEVBQUUsUUFEbEI7QUFFRSxNQUFFLEVBQUUsQ0FBQyxNQUFELEVBQVMsTUFBVCxDQUZOO0FBR0UsTUFBRSxFQUFFLENBQUMsT0FBRCxFQUFVLE1BQVYsQ0FITjtBQUlFLGFB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O0FBQUE7QUFBQTtBQUFBO0FBQUEsVUFERjtBQXVERCIsImZpbGUiOiIuL2xheW91dC9mb290ZXIudHN4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtcbiAgRmxleCxcbiAgSFN0YWNrLFxuICBJY29uLFxuICBTaW1wbGVHcmlkLFxuICBWU3RhY2ssXG4gIFRleHQsXG4gIEJveCxcbn0gZnJvbSBcIkBjaGFrcmEtdWkvcmVhY3RcIjtcbmltcG9ydCB7IG1heFdpZHRoIH0gZnJvbSBcIi4uL3RoZW1lXCI7XG5pbXBvcnQgTGluayBmcm9tIFwibmV4dC9saW5rXCI7XG5pbXBvcnQgeyBDZ0RldGFpbHNNb3JlIH0gZnJvbSBcInJlYWN0LWljb25zL2NnXCI7XG5pbXBvcnQgeyBNZExvY2F0aW9uUGluLCBNZEVtYWlsLCBNZFBob25lIH0gZnJvbSBcInJlYWN0LWljb25zL21kXCI7XG5cbmNvbnN0IGRldGFpbHMgPSBbXG4gIHsgbmFtZTogXCIg0JHQkNCZ0JPQkNCb0Kwg0K3QpSDQm9CY0KbQldCZINCQ0KXQm9CQ0KUg0KHQo9Cg0JPQo9Cj0JvQrCBcIiwgbGluazogXCIvXCIgfSxcbiAgeyBuYW1lOiBcItCt0JrQntCb0J7Qk9CY0JnQnSDQkdCe0JvQntCS0KHQoNCe0JvQq9CdINCi06jQklwiLCBsaW5rOiBcIi9cIiB9LFxuICB7IG5hbWU6IFwiINCU0J7QotCe0J7QlCDQlNKu0KDQrdCcINCW0KPQoNCQ0JxcIiwgbGluazogXCIvXCIgfSxcbiAgeyBuYW1lOiBcIiDQl9CQ0KXQmNCg0JPQkNCQ0J3QqyDQl9Oo0JLQm9Oo0JvQmNCZ0J0g0JzQrdCU0K3QrdCb0K3Qm1wiLCBsaW5rOiBcIi9cIiB9LFxuICB7IG5hbWU6IFwi0JDQltCb0KvQnSDQkdCQ0JnQoFwiIH0sXG5dO1xuXG5jb25zdCBjb250YWN0cyA9IFtcbiAge1xuICAgIGljb246IE1kTG9jYXRpb25QaW4sXG4gICAgdGV4dDogXCLQmNGFINGB0YPRgNCz0YPRg9C70LjQudC9INCz0YPQtNCw0LzQtiAtIDEsINCR0LDQs9CwINGC0L7QudGA0YPRgywg0KHSr9GF0LHQsNCw0YLQsNGAINC00q/Sr9GA0Y3Qsywg0KPQu9Cw0LDQvdCx0LDQsNGC0LDRgFwiLFxuICB9LFxuICB7IGljb246IE1kUGhvbmUsIHRleHQ6IFwiNzU3NTQ0MDAsIDc3MzA3NzMwLTExNjNcIiB9LFxuICB7IGljb246IE1kRW1haWwsIHRleHQ6IFwibmV3c0BudW0uZWR1Lm1uXCIgfSxcbl07XG5cbmV4cG9ydCBmdW5jdGlvbiBGb290ZXIoKSB7XG4gIHJldHVybiAoXG4gICAgPEZsZXhcbiAgICAgIGp1c3RpZnlDb250ZW50PXtcImNlbnRlclwifVxuICAgICAgcHQ9e1tcIjUwcHhcIiwgXCIzMHB4XCJdfVxuICAgICAgcGI9e1tcIjEwMHB4XCIsIFwiMzBweFwiXX1cbiAgICAgIGJvcmRlclRvcD17XCIxcHggc29saWQgZ3JheVwifVxuICAgICAgYmc9e1wiIzE1M2E3NVwifVxuICAgICAgY29sb3I9e1wid2hpdGVcIn1cbiAgICA+XG4gICAgICA8U2ltcGxlR3JpZCB3PVwiMTAwJVwiIG1heFc9e21heFdpZHRofSBjb2x1bW5zPXtbMSwgM119IGdhcD17WzgsIDRdfT5cbiAgICAgICAgPExpbmsgaHJlZj17XCIvXCJ9PlxuICAgICAgICAgIDxIU3RhY2sgaD1cImZpdC1jb250ZW50XCIgY3Vyc29yPXtcInBvaW50ZXJcIn0+XG4gICAgICAgICAgICA8Qm94XG4gICAgICAgICAgICAgIGJnPXtcInVybChodHRwczovL3d3dy5udW0uZWR1Lm1uL2ltZy9sb2dvLnBuZylcIn1cbiAgICAgICAgICAgICAgYmdQb3M9e1wiY2VudGVyXCJ9XG4gICAgICAgICAgICAgIGJnU2l6ZT17XCJjb3ZlclwifVxuICAgICAgICAgICAgICBib3hTaXplPXtcIjYwcHhcIn1cbiAgICAgICAgICAgIC8+XG4gICAgICAgICAgICA8VGV4dCBmb250V2VpZ2h0PXtcImJvbGRcIn0gZm9udFNpemU9e1wibGdcIn0+XG4gICAgICAgICAgICAgIE1VSVMgLSBGQVFcbiAgICAgICAgICAgIDwvVGV4dD5cbiAgICAgICAgICA8L0hTdGFjaz5cbiAgICAgICAgPC9MaW5rPlxuXG4gICAgICAgIDxWU3RhY2sgdz1cIjEwMCVcIiBhbGlnbkl0ZW1zPXtcInVuc2V0XCJ9IHNwYWNpbmc9e1wiMTVweFwifT5cbiAgICAgICAgICA8VGV4dCBmb250U2l6ZT17XCJsZ1wifSBmb250V2VpZ2h0PXtcIjUwMFwifT5cbiAgICAgICAgICAgINCl0L7Qu9Cx0L7QvtGB0YPRg9C0XG4gICAgICAgICAgPC9UZXh0PlxuICAgICAgICAgIHtkZXRhaWxzLm1hcCgoZWwsIGluZCkgPT4ge1xuICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgPExpbmsgaHJlZj17YCR7ZWwubGlua31gfSBrZXk9e2luZH0+XG4gICAgICAgICAgICAgICAgPEhTdGFjayBjdXJzb3I9e1wicG9pbnRlclwifT5cbiAgICAgICAgICAgICAgICAgIDxJY29uIGFzPXtDZ0RldGFpbHNNb3JlfSAvPlxuICAgICAgICAgICAgICAgICAgPFRleHQgZm9udFNpemU9e1wic21cIn0+e2VsLm5hbWV9PC9UZXh0PlxuICAgICAgICAgICAgICAgIDwvSFN0YWNrPlxuICAgICAgICAgICAgICA8L0xpbms+XG4gICAgICAgICAgICApO1xuICAgICAgICAgIH0pfVxuICAgICAgICA8L1ZTdGFjaz5cbiAgICAgICAgPFZTdGFjayB3PVwiMTAwJVwiIGFsaWduSXRlbXM9e1widW5zZXRcIn0gc3BhY2luZz17XCIxNXB4XCJ9PlxuICAgICAgICAgIDxUZXh0IGZvbnRTaXplPXtcImxnXCJ9IGZvbnRXZWlnaHQ9e1wiNTAwXCJ9PlxuICAgICAgICAgICAg0KXQvtC70LHQvtCz0LTQvtGFXG4gICAgICAgICAgPC9UZXh0PlxuICAgICAgICAgIHtjb250YWN0cy5tYXAoKGVsLCBpbmQpID0+IHtcbiAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgIDxIU3RhY2sga2V5PXtpbmR9PlxuICAgICAgICAgICAgICAgIDxJY29uIGFzPXtlbC5pY29ufSAvPlxuICAgICAgICAgICAgICAgIDxUZXh0IGZvbnRTaXplPXtcInNtXCJ9PntlbC50ZXh0fTwvVGV4dD5cbiAgICAgICAgICAgICAgPC9IU3RhY2s+XG4gICAgICAgICAgICApO1xuICAgICAgICAgIH0pfVxuICAgICAgICA8L1ZTdGFjaz5cbiAgICAgIDwvU2ltcGxlR3JpZD5cbiAgICA8L0ZsZXg+XG4gICk7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./layout/footer.tsx\n");
 
 /***/ }),
 
-/***/ 3836:
+/***/ "./layout/header.tsx":
+/*!***************************!*\
+  !*** ./layout/header.tsx ***!
+  \***************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "k": function() { return /* binding */ maxWidth; }
-/* harmony export */ });
-const maxWidth = ["95%", "95%", "90%", "90%", "1300px"];
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Header\": function() { return /* binding */ Header; }\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ \"@chakra-ui/react\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../theme */ \"./theme/index.ts\");\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ \"./node_modules/next/link.js\");\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);\n\nvar _jsxFileName = \"/Users/saihnaamunhuu/Documents/Faq-diplom/layout/header.tsx\";\n\n\n\nconst details = [{\n  text: \"Асуулт нэмэх\",\n  link: \"/addQuestion\"\n}, {\n  text: \"Хайх\",\n  link: \"/search\"\n}];\nfunction Header() {\n  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {\n    w: \"100%\",\n    pos: \"fixed\",\n    borderBottom: \"1px solid black\",\n    zIndex: \"1\",\n    bg: \"#1b4587\",\n    color: \"white\",\n    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {\n      justifyContent: \"center\",\n      py: \"20px\",\n      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {\n        justifyContent: \"space-between\",\n        w: \"100%\",\n        maxW: _theme__WEBPACK_IMPORTED_MODULE_2__.maxWidth,\n        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {\n          href: \"/\",\n          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {\n            cursor: \"pointer\",\n            bg: \"url(https://www.num.edu.mn/img/logo.png)\",\n            bgPos: \"center\",\n            bgSize: \"cover\",\n            boxSize: \"50px\"\n          }, void 0, false, {\n            fileName: _jsxFileName,\n            lineNumber: 23,\n            columnNumber: 13\n          }, this)\n        }, void 0, false, {\n          fileName: _jsxFileName,\n          lineNumber: 22,\n          columnNumber: 11\n        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.HStack, {\n          spacing: \"20px\",\n          children: details.map(el => {\n            return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {\n              href: `${el.link}`,\n              children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Text, {\n                textTransform: \"uppercase\",\n                fontWeight: \"bold\",\n                cursor: \"pointer\",\n                children: el.text\n              }, el.link, false, {\n                fileName: _jsxFileName,\n                lineNumber: 35,\n                columnNumber: 19\n              }, this)\n            }, el.link, false, {\n              fileName: _jsxFileName,\n              lineNumber: 34,\n              columnNumber: 17\n            }, this);\n          })\n        }, void 0, false, {\n          fileName: _jsxFileName,\n          lineNumber: 31,\n          columnNumber: 11\n        }, this)]\n      }, void 0, true, {\n        fileName: _jsxFileName,\n        lineNumber: 21,\n        columnNumber: 9\n      }, this)\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 20,\n      columnNumber: 7\n    }, this)\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 12,\n    columnNumber: 5\n  }, this);\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zb3VyY2UtY29kZS8uL2xheW91dC9oZWFkZXIudHN4P2JiNjUiXSwibmFtZXMiOlsiZGV0YWlscyIsInRleHQiLCJsaW5rIiwiSGVhZGVyIiwibWF4V2lkdGgiLCJtYXAiLCJlbCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUVBLE1BQU1BLE9BQU8sR0FBRyxDQUNkO0FBQUVDLE1BQUksRUFBRSxjQUFSO0FBQXdCQyxNQUFJLEVBQUU7QUFBOUIsQ0FEYyxFQUVkO0FBQUVELE1BQUksRUFBRSxNQUFSO0FBQWdCQyxNQUFJLEVBQUU7QUFBdEIsQ0FGYyxDQUFoQjtBQUtPLFNBQVNDLE1BQVQsR0FBa0I7QUFDdkIsc0JBQ0UsOERBQUMsaURBQUQ7QUFDRSxLQUFDLEVBQUMsTUFESjtBQUVFLE9BQUcsRUFBRSxPQUZQO0FBR0UsZ0JBQVksRUFBRSxpQkFIaEI7QUFJRSxVQUFNLEVBQUUsR0FKVjtBQUtFLE1BQUUsRUFBRSxTQUxOO0FBTUUsU0FBSyxFQUFFLE9BTlQ7QUFBQSwyQkFRRSw4REFBQyxrREFBRDtBQUFNLG9CQUFjLEVBQUUsUUFBdEI7QUFBZ0MsUUFBRSxFQUFDLE1BQW5DO0FBQUEsNkJBQ0UsOERBQUMsa0RBQUQ7QUFBTSxzQkFBYyxFQUFFLGVBQXRCO0FBQXVDLFNBQUMsRUFBRSxNQUExQztBQUFrRCxZQUFJLEVBQUVDLDRDQUF4RDtBQUFBLGdDQUNFLDhEQUFDLGtEQUFEO0FBQU0sY0FBSSxFQUFFLEdBQVo7QUFBQSxpQ0FDRSw4REFBQyxpREFBRDtBQUNFLGtCQUFNLEVBQUUsU0FEVjtBQUVFLGNBQUUsRUFBRSwwQ0FGTjtBQUdFLGlCQUFLLEVBQUUsUUFIVDtBQUlFLGtCQUFNLEVBQUUsT0FKVjtBQUtFLG1CQUFPLEVBQUU7QUFMWDtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBREY7QUFBQTtBQUFBO0FBQUE7QUFBQSxnQkFERixlQVVFLDhEQUFDLG9EQUFEO0FBQVEsaUJBQU8sRUFBRSxNQUFqQjtBQUFBLG9CQUNHSixPQUFPLENBQUNLLEdBQVIsQ0FBYUMsRUFBRCxJQUFRO0FBQ25CLGdDQUNFLDhEQUFDLGtEQUFEO0FBQU0sa0JBQUksRUFBRyxHQUFFQSxFQUFFLENBQUNKLElBQUssRUFBdkI7QUFBQSxxQ0FDRSw4REFBQyxrREFBRDtBQUNFLDZCQUFhLEVBQUUsV0FEakI7QUFHRSwwQkFBVSxFQUFFLE1BSGQ7QUFJRSxzQkFBTSxFQUFDLFNBSlQ7QUFBQSwwQkFNR0ksRUFBRSxDQUFDTDtBQU5OLGlCQUVPSyxFQUFFLENBQUNKLElBRlY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQURGLGVBQStCSSxFQUFFLENBQUNKLElBQWxDO0FBQUE7QUFBQTtBQUFBO0FBQUEsb0JBREY7QUFZRCxXQWJBO0FBREg7QUFBQTtBQUFBO0FBQUE7QUFBQSxnQkFWRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFERjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBUkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxVQURGO0FBd0NEIiwiZmlsZSI6Ii4vbGF5b3V0L2hlYWRlci50c3guanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBGbGV4LCBUZXh0LCBJY29uLCBIU3RhY2ssIEJveCB9IGZyb20gXCJAY2hha3JhLXVpL3JlYWN0XCI7XG5pbXBvcnQgeyBtYXhXaWR0aCB9IGZyb20gXCIuLi90aGVtZVwiO1xuaW1wb3J0IExpbmsgZnJvbSBcIm5leHQvbGlua1wiO1xuXG5jb25zdCBkZXRhaWxzID0gW1xuICB7IHRleHQ6IFwi0JDRgdGD0YPQu9GCINC90Y3QvNGN0YVcIiwgbGluazogXCIvYWRkUXVlc3Rpb25cIiB9LFxuICB7IHRleHQ6IFwi0KXQsNC50YVcIiwgbGluazogXCIvc2VhcmNoXCIgfSxcbl07XG5cbmV4cG9ydCBmdW5jdGlvbiBIZWFkZXIoKSB7XG4gIHJldHVybiAoXG4gICAgPEJveFxuICAgICAgdz1cIjEwMCVcIlxuICAgICAgcG9zPXtcImZpeGVkXCJ9XG4gICAgICBib3JkZXJCb3R0b209e1wiMXB4IHNvbGlkIGJsYWNrXCJ9XG4gICAgICB6SW5kZXg9e1wiMVwifVxuICAgICAgYmc9e1wiIzFiNDU4N1wifVxuICAgICAgY29sb3I9e1wid2hpdGVcIn1cbiAgICA+XG4gICAgICA8RmxleCBqdXN0aWZ5Q29udGVudD17XCJjZW50ZXJcIn0gcHk9XCIyMHB4XCI+XG4gICAgICAgIDxGbGV4IGp1c3RpZnlDb250ZW50PXtcInNwYWNlLWJldHdlZW5cIn0gdz17XCIxMDAlXCJ9IG1heFc9e21heFdpZHRofT5cbiAgICAgICAgICA8TGluayBocmVmPXtcIi9cIn0+XG4gICAgICAgICAgICA8Qm94XG4gICAgICAgICAgICAgIGN1cnNvcj17XCJwb2ludGVyXCJ9XG4gICAgICAgICAgICAgIGJnPXtcInVybChodHRwczovL3d3dy5udW0uZWR1Lm1uL2ltZy9sb2dvLnBuZylcIn1cbiAgICAgICAgICAgICAgYmdQb3M9e1wiY2VudGVyXCJ9XG4gICAgICAgICAgICAgIGJnU2l6ZT17XCJjb3ZlclwifVxuICAgICAgICAgICAgICBib3hTaXplPXtcIjUwcHhcIn1cbiAgICAgICAgICAgIC8+XG4gICAgICAgICAgPC9MaW5rPlxuICAgICAgICAgIDxIU3RhY2sgc3BhY2luZz17XCIyMHB4XCJ9PlxuICAgICAgICAgICAge2RldGFpbHMubWFwKChlbCkgPT4ge1xuICAgICAgICAgICAgICByZXR1cm4gKFxuICAgICAgICAgICAgICAgIDxMaW5rIGhyZWY9e2Ake2VsLmxpbmt9YH0ga2V5PXtlbC5saW5rfT5cbiAgICAgICAgICAgICAgICAgIDxUZXh0XG4gICAgICAgICAgICAgICAgICAgIHRleHRUcmFuc2Zvcm09e1widXBwZXJjYXNlXCJ9XG4gICAgICAgICAgICAgICAgICAgIGtleT17ZWwubGlua31cbiAgICAgICAgICAgICAgICAgICAgZm9udFdlaWdodD17XCJib2xkXCJ9XG4gICAgICAgICAgICAgICAgICAgIGN1cnNvcj1cInBvaW50ZXJcIlxuICAgICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgICB7ZWwudGV4dH1cbiAgICAgICAgICAgICAgICAgIDwvVGV4dD5cbiAgICAgICAgICAgICAgICA8L0xpbms+XG4gICAgICAgICAgICAgICk7XG4gICAgICAgICAgICB9KX1cbiAgICAgICAgICA8L0hTdGFjaz5cbiAgICAgICAgPC9GbGV4PlxuICAgICAgPC9GbGV4PlxuICAgIDwvQm94PlxuICApO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./layout/header.tsx\n");
+
+/***/ }),
+
+/***/ "./layout/index.tsx":
+/*!**************************!*\
+  !*** ./layout/index.tsx ***!
+  \**************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": function() { return /* binding */ Layout; }\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footer */ \"./layout/footer.tsx\");\n/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./header */ \"./layout/header.tsx\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @chakra-ui/react */ \"@chakra-ui/react\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);\n\nvar _jsxFileName = \"/Users/saihnaamunhuu/Documents/Faq-diplom/layout/index.tsx\";\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\nfunction Layout({\n  Component,\n  pageProps\n}) {\n  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Flex, {\n    flexDir: \"column\",\n    minH: \"100vh\",\n    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_header__WEBPACK_IMPORTED_MODULE_2__.Header, {}, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 8,\n      columnNumber: 7\n    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Box, {\n      w: \"100%\",\n      h: \"75px\"\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 9,\n      columnNumber: 7\n    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, _objectSpread({}, pageProps), void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 10,\n      columnNumber: 7\n    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Flex, {\n      flexGrow: 1\n    }, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 11,\n      columnNumber: 7\n    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_footer__WEBPACK_IMPORTED_MODULE_1__.Footer, {}, void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 12,\n      columnNumber: 7\n    }, this)]\n  }, void 0, true, {\n    fileName: _jsxFileName,\n    lineNumber: 7,\n    columnNumber: 5\n  }, this);\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zb3VyY2UtY29kZS8uL2xheW91dC9pbmRleC50c3g/MmQyNyJdLCJuYW1lcyI6WyJMYXlvdXQiLCJDb21wb25lbnQiLCJwYWdlUHJvcHMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFFZSxTQUFTQSxNQUFULENBQWdCO0FBQUVDLFdBQUY7QUFBYUM7QUFBYixDQUFoQixFQUErQztBQUM1RCxzQkFDRSw4REFBQyxrREFBRDtBQUFNLFdBQU8sRUFBRSxRQUFmO0FBQXlCLFFBQUksRUFBRSxPQUEvQjtBQUFBLDRCQUNFLDhEQUFDLDJDQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsWUFERixlQUVFLDhEQUFDLGlEQUFEO0FBQUssT0FBQyxFQUFDLE1BQVA7QUFBYyxPQUFDLEVBQUM7QUFBaEI7QUFBQTtBQUFBO0FBQUE7QUFBQSxZQUZGLGVBR0UsOERBQUMsU0FBRCxvQkFBZUEsU0FBZjtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBSEYsZUFJRSw4REFBQyxrREFBRDtBQUFNLGNBQVEsRUFBRTtBQUFoQjtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBSkYsZUFLRSw4REFBQywyQ0FBRDtBQUFBO0FBQUE7QUFBQTtBQUFBLFlBTEY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLFVBREY7QUFTRCIsImZpbGUiOiIuL2xheW91dC9pbmRleC50c3guanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBGb290ZXIgfSBmcm9tIFwiLi9mb290ZXJcIjtcbmltcG9ydCB7IEhlYWRlciB9IGZyb20gXCIuL2hlYWRlclwiO1xuaW1wb3J0IHsgQm94LCBGbGV4IH0gZnJvbSBcIkBjaGFrcmEtdWkvcmVhY3RcIjtcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gTGF5b3V0KHsgQ29tcG9uZW50LCBwYWdlUHJvcHMgfTogYW55KSB7XG4gIHJldHVybiAoXG4gICAgPEZsZXggZmxleERpcj17XCJjb2x1bW5cIn0gbWluSD17XCIxMDB2aFwifT5cbiAgICAgIDxIZWFkZXIgLz5cbiAgICAgIDxCb3ggdz1cIjEwMCVcIiBoPVwiNzVweFwiIC8+XG4gICAgICA8Q29tcG9uZW50IHsuLi5wYWdlUHJvcHN9IC8+XG4gICAgICA8RmxleCBmbGV4R3Jvdz17MX0gLz5cbiAgICAgIDxGb290ZXIgLz5cbiAgICA8L0ZsZXg+XG4gICk7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./layout/index.tsx\n");
+
+/***/ }),
+
+/***/ "./pages/_app.tsx":
+/*!************************!*\
+  !*** ./pages/_app.tsx ***!
+  \************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/globals.css */ \"./styles/globals.css\");\n/* harmony import */ var _styles_globals_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_globals_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layout */ \"./layout/index.tsx\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @chakra-ui/react */ \"@chakra-ui/react\");\n/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);\n\nvar _jsxFileName = \"/Users/saihnaamunhuu/Documents/Faq-diplom/pages/_app.tsx\";\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\n\nfunction MyApp(AppProps) {\n  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.ChakraProvider, {\n    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_layout__WEBPACK_IMPORTED_MODULE_2__.default, _objectSpread({}, AppProps), void 0, false, {\n      fileName: _jsxFileName,\n      lineNumber: 9,\n      columnNumber: 7\n    }, this)\n  }, void 0, false, {\n    fileName: _jsxFileName,\n    lineNumber: 8,\n    columnNumber: 5\n  }, this);\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MyApp);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zb3VyY2UtY29kZS8uL3BhZ2VzL19hcHAudHN4PzcyMTYiXSwibmFtZXMiOlsiTXlBcHAiLCJBcHBQcm9wcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUVBO0FBQ0E7O0FBRUEsU0FBU0EsS0FBVCxDQUFlQyxRQUFmLEVBQW1DO0FBQ2pDLHNCQUNFLDhEQUFDLDREQUFEO0FBQUEsMkJBQ0UsOERBQUMsNENBQUQsb0JBQVlBLFFBQVo7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQURGO0FBQUE7QUFBQTtBQUFBO0FBQUEsVUFERjtBQUtEOztBQUVELCtEQUFlRCxLQUFmIiwiZmlsZSI6Ii4vcGFnZXMvX2FwcC50c3guanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgXCIuLi9zdHlsZXMvZ2xvYmFscy5jc3NcIjtcbmltcG9ydCB0eXBlIHsgQXBwUHJvcHMgfSBmcm9tIFwibmV4dC9hcHBcIjtcbmltcG9ydCBMYXlvdXQgZnJvbSBcIi4uL2xheW91dFwiO1xuaW1wb3J0IHsgQ2hha3JhUHJvdmlkZXIgfSBmcm9tIFwiQGNoYWtyYS11aS9yZWFjdFwiO1xuXG5mdW5jdGlvbiBNeUFwcChBcHBQcm9wczogQXBwUHJvcHMpIHtcbiAgcmV0dXJuIChcbiAgICA8Q2hha3JhUHJvdmlkZXI+XG4gICAgICA8TGF5b3V0IHsuLi5BcHBQcm9wc30gLz5cbiAgICA8L0NoYWtyYVByb3ZpZGVyPlxuICApO1xufVxuXG5leHBvcnQgZGVmYXVsdCBNeUFwcDtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./pages/_app.tsx\n");
+
+/***/ }),
+
+/***/ "./theme/index.ts":
+/*!************************!*\
+  !*** ./theme/index.ts ***!
+  \************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"maxWidth\": function() { return /* binding */ maxWidth; }\n/* harmony export */ });\nconst maxWidth = [\"95%\", \"95%\", \"90%\", \"90%\", \"1300px\"];\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9zb3VyY2UtY29kZS8uL3RoZW1lL2luZGV4LnRzPzcxOTgiXSwibmFtZXMiOlsibWF4V2lkdGgiXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxNQUFNQSxRQUFRLEdBQUcsQ0FBQyxLQUFELEVBQVEsS0FBUixFQUFlLEtBQWYsRUFBc0IsS0FBdEIsRUFBNkIsUUFBN0IsQ0FBakIiLCJmaWxlIjoiLi90aGVtZS9pbmRleC50cy5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IG1heFdpZHRoID0gW1wiOTUlXCIsIFwiOTUlXCIsIFwiOTAlXCIsIFwiOTAlXCIsIFwiMTMwMHB4XCJdO1xuXG5leHBvcnQgeyBtYXhXaWR0aCB9O1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./theme/index.ts\n");
+
+/***/ }),
+
+/***/ "./styles/globals.css":
+/*!****************************!*\
+  !*** ./styles/globals.css ***!
+  \****************************/
+/***/ (function() {
+
 
 
 /***/ }),
 
-/***/ 3426:
+/***/ "@chakra-ui/react":
+/*!***********************************!*\
+  !*** external "@chakra-ui/react" ***!
+  \***********************************/
 /***/ (function(module) {
 
 "use strict";
@@ -260,7 +88,10 @@ module.exports = require("@chakra-ui/react");;
 
 /***/ }),
 
-/***/ 8417:
+/***/ "../next-server/lib/router-context":
+/*!**************************************************************!*\
+  !*** external "next/dist/next-server/lib/router-context.js" ***!
+  \**************************************************************/
 /***/ (function(module) {
 
 "use strict";
@@ -268,7 +99,10 @@ module.exports = require("next/dist/next-server/lib/router-context.js");;
 
 /***/ }),
 
-/***/ 2238:
+/***/ "../next-server/lib/router/utils/get-asset-path-from-route":
+/*!**************************************************************************************!*\
+  !*** external "next/dist/next-server/lib/router/utils/get-asset-path-from-route.js" ***!
+  \**************************************************************************************/
 /***/ (function(module) {
 
 "use strict";
@@ -276,7 +110,10 @@ module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-
 
 /***/ }),
 
-/***/ 9297:
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
 /***/ (function(module) {
 
 "use strict";
@@ -284,15 +121,32 @@ module.exports = require("react");;
 
 /***/ }),
 
-/***/ 5282:
+/***/ "react-is":
+/*!***************************!*\
+  !*** external "react-is" ***!
+  \***************************/
 /***/ (function(module) {
 
 "use strict";
-module.exports = require("react/jsx-runtime");;
+module.exports = require("react-is");;
 
 /***/ }),
 
-/***/ 4453:
+/***/ "react/jsx-dev-runtime":
+/*!****************************************!*\
+  !*** external "react/jsx-dev-runtime" ***!
+  \****************************************/
+/***/ (function(module) {
+
+"use strict";
+module.exports = require("react/jsx-dev-runtime");;
+
+/***/ }),
+
+/***/ "?ca47":
+/*!******************************************!*\
+  !*** ./utils/resolve-rewrites (ignored) ***!
+  \******************************************/
 /***/ (function() {
 
 /* (ignored) */
@@ -306,7 +160,7 @@ module.exports = require("react/jsx-runtime");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = __webpack_require__.X(0, [599,139], function() { return __webpack_exec__(5006); });
+var __webpack_exports__ = __webpack_require__.X(0, ["vendors-node_modules_next_link_js-node_modules_react-icons_cg_index_esm_js-node_modules_react-ba5963"], function() { return __webpack_exec__("./pages/_app.tsx"); });
 module.exports = __webpack_exports__;
 
 })();
