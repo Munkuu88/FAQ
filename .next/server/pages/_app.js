@@ -160,7 +160,7 @@ module.exports = require("react/jsx-dev-runtime");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = function(moduleId) { return __webpack_require__(__webpack_require__.s = moduleId); }
-var __webpack_exports__ = __webpack_require__.X(0, ["vendors-node_modules_next_link_js-node_modules_react-icons_cg_index_esm_js-node_modules_react-ba5963"], function() { return __webpack_exec__("./pages/_app.tsx"); });
+var __webpack_exports__ = __webpack_require__.X(0, ["vendors-node_modules_next_link_js-node_modules_react-icons_lib_cjs_index_js","vendors-node_modules_react-icons_cg_index_esm_js-node_modules_react-icons_md_index_esm_js"], function() { return __webpack_exec__("./pages/_app.tsx"); });
 module.exports = __webpack_exports__;
 
 })();
