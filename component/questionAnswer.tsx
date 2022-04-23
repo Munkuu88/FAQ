@@ -93,7 +93,12 @@ const QuestionAnswerDetail = ({
   );
 };
 
-export function QuestionAnswer({ sortGetData }: any) {
+export function QuestionAnswer({
+  sortGetData,
+  questionSort,
+  buttonActive,
+  setButtonActive,
+}: any) {
   const [questionsData, setQuestionsData] = useState<any>();
   const [open, setOpen] = useState(false);
   const [location, setLocation] = useState("");
@@ -106,23 +111,37 @@ export function QuestionAnswer({ sortGetData }: any) {
     getDatas();
   }, []);
 
+  useEffect(() => {
+    setButtonActive(false);
+  }, [buttonActive]);
+
   return (
     <>
       <Accordion allowToggle w={"100%"} defaultIndex={[1]}>
         {sortGetData &&
-          sortGetData.map((el: any) => {
-            return (
-              <QuestionAnswerDetail
-                key={el.id}
-                question={el.question}
-                answers={el.answer}
-                setOpen={setOpen}
-                open={open}
-                setLocation={setLocation}
-                place={el.location}
-              />
-            );
-          })}
+          sortGetData
+            .filter((val: any) => {
+              if (questionSort == "") {
+                return val;
+              } else if (
+                val.question.toLowerCase().includes(questionSort.toLowerCase())
+              ) {
+                return val;
+              }
+            })
+            .map((el: any) => {
+              return (
+                <QuestionAnswerDetail
+                  key={el.id}
+                  question={el.question}
+                  answers={el.answer}
+                  setOpen={setOpen}
+                  open={open}
+                  setLocation={setLocation}
+                  place={el.location}
+                />
+              );
+            })}
       </Accordion>
       <LocationModal open={open} setOpen={setOpen} location={location} />
     </>

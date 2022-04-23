@@ -10,7 +10,6 @@ import {
   List,
   HStack,
   Checkbox,
-  Text,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -34,7 +33,9 @@ import {
 import { db } from "../firebase/clientApp";
 import { useEffect, useState } from "react";
 
-const Filter = ({ category, subCategory, setSortState }: any) => {
+const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
+  const [id, setId] = useState<number>();
+
   return (
     <AccordionItem>
       <h2>
@@ -47,18 +48,20 @@ const Filter = ({ category, subCategory, setSortState }: any) => {
       </h2>
       <AccordionPanel pb={4}>
         <List>
-          {subCategory.map((el: any) => {
+          {subCategory.map((el: any, ind: number) => {
+            console.log(ind);
             return (
               <Flex
                 onClick={() => {
-                  setSortState(el.link);
+                  setSortState(el.link), setSort(true), setId(ind);
                 }}
                 key={el.link}
                 py="5px"
                 alignItems={"unset"}
               >
-                <Checkbox pr="15px" />
-                <Text>{el.text}</Text>
+                <Checkbox isChecked={ind == id ? true : false}>
+                  {el.text}
+                </Checkbox>
               </Flex>
             );
           })}
@@ -112,11 +115,15 @@ const FilterDrawer = ({ isOpen, onClose, setSortState }: any) => {
   );
 };
 
-export function Search() {
+export function Search(sortLink: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [filters, setFilters] = useState<any>([]);
   const [sortState, setSortState] = useState<any>([]);
   const [sortGetData, setSortGetData] = useState<any>();
+  const [sort, setSort] = useState<any>(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [questionSort, setQuestionSort] = useState("");
+  const [buttonActive, setButtonActive] = useState(false);
 
   useEffect(() => {
     onSnapshot(collection(db, "categories"), (snapshot) =>
@@ -131,24 +138,37 @@ export function Search() {
     where("subCategory", "==", `${sortState}`)
   );
 
-  const sortData = async () => {
-    const querySnapshot = await getDocs(q);
+  const qw = query(
+    collection(db, "questions"),
+    where("subCategory", "==", `${sortLink.sortLink}`)
+  );
+
+  const sortData = async (qt: any) => {
+    const querySnapshot = await getDocs(qt);
     setSortGetData(querySnapshot.docs.map((el) => el.data()));
   };
 
   useEffect(() => {
-    sortData();
+    console.log(sortLink);
+    if (sortLink.sortLink == undefined) {
+      onSnapshot(collection(db, "questions"), (snapshot) =>
+        setSortGetData(snapshot.docs.map((doc) => doc.data()))
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (sort) {
+      sortData(q);
+      setQuestionSort("");
+    }
   }, [sortState]);
 
-  // const sortData = query(
-  //   collection(db, "questions"),
-  //   where("question", "in", "төлбөр")
-  // );
-  // const getSortData = async () => {
-  //   const querySnapshot = await getDocs(sortData);
-  //   setSortGetData(querySnapshot.docs.map((el) => el.data()));
-  //   console.log("-->", sortGetData);
-  // };
+  useEffect(() => {
+    if (sortLink.sortLink !== undefined) {
+      sortData(qw);
+    }
+  }, []);
 
   return (
     <Flex justifyContent={"center"}>
@@ -163,6 +183,7 @@ export function Search() {
             {filters.map((el: any) => {
               return (
                 <Filter
+                  setSort={setSort}
                   key={el.category}
                   setSortState={setSortState}
                   category={el.category}
@@ -180,11 +201,21 @@ export function Search() {
           >
             <Box />
             <HStack w="60%">
-              <Input placeholder={"Хайх асуултаа оруулна уу"} />
-              <Button>Хайх</Button>
+              <Input
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+                placeholder={"Хайх асуултаа оруулна уу"}
+              />
+              <Button onClick={() => setQuestionSort(searchTerm)}>Хайх</Button>
             </HStack>
           </Flex>
-          <QuestionAnswer sortGetData={sortGetData} />
+          <QuestionAnswer
+            sortGetData={sortGetData}
+            questionSort={questionSort}
+            buttonActive={buttonActive}
+            setButtonActive={setButtonActive}
+          />
         </VStack>
         <Button
           onClick={onOpen}
