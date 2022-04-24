@@ -13,7 +13,7 @@ export function Header() {
       w="100%"
       pos={"fixed"}
       borderBottom={"1px solid black"}
-      zIndex={"1"}
+      zIndex={1}
       bg={"#1b4587"}
       color={"white"}
     >

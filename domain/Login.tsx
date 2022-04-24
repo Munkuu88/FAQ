@@ -8,8 +8,29 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/clientApp";
+import { useUser } from "../context";
 
 export function Login() {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState<any>();
+  const { setUser } = useUser();
+
+  function SignIn() {
+    signInWithEmailAndPassword(auth, userName, password)
+      .then((userCredential) => {
+        setUserData(userCredential.user);
+        console.log("user", userCredential.user);
+        setUser(userCredential.user);
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+      });
+  }
+
   return (
     <Flex justifyContent={"center"} alignItems={"center"} h="80vh">
       <VStack
@@ -31,19 +52,24 @@ export function Login() {
         </Text>
         <VStack alignItems={"unset"}>
           <Text>Username</Text>
-          <Input placeholder={"Enter username"} />
+          <Input
+            onChange={(e) => setUserName(e.target.value)}
+            placeholder={"Enter username"}
+          />
         </VStack>
         <VStack alignItems={"unset"}>
           <Text>Password</Text>
-          <PasswordInput />
+          <PasswordInput setPassword={setPassword} />
         </VStack>
-        <Button colorScheme={"blue"}>Нэвтрэх</Button>
+        <Button onClick={SignIn} colorScheme={"blue"}>
+          Нэвтрэх
+        </Button>
       </VStack>
     </Flex>
   );
 }
 
-const PasswordInput = () => {
+const PasswordInput = ({ setPassword }: any) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -53,8 +79,9 @@ const PasswordInput = () => {
         pr="4.5rem"
         type={show ? "text" : "password"}
         placeholder="Enter password"
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <InputRightElement width="4.5rem">
+      <InputRightElement zIndex={0} width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
           {show ? "Hide" : "Show"}
         </Button>
