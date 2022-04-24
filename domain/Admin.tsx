@@ -1,18 +1,48 @@
-import { Flex, Heading, Text, VStack, Input } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  Text,
+  VStack,
+  Input,
+  Textarea,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/clientApp";
+import { auth, db } from "../firebase/clientApp";
 import { maxWidth } from "../theme";
 import { useUser } from "../context";
 import { useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
 
-const MuiltChoose = () => {
+const MuiltChoose = ({ func, data }: any) => {
+  const [value, setValue] = useState("");
+
+  function Add() {
+    func([...data, value]);
+  }
+  console.log("ss", data);
+
   return (
     <VStack alignItems={"unset"} w={"49%"}>
       <VStack alignItems={"unset"}>
         <Text>Хариулт</Text>
-        <Input />
+        <Textarea
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+        <Flex justifyContent={"space-between"}>
+          <Box />
+          <Button onClick={Add}>Нэмэх</Button>
+        </Flex>
       </VStack>
-      <VStack></VStack>
+
+      <VStack alignItems={"unset"}>
+        {data.map((el: any) => (
+          <Text key={el}>{el}</Text>
+        ))}
+      </VStack>
     </VStack>
   );
 };
@@ -23,6 +53,21 @@ export function Admin() {
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [subCategory, setSubCategory] = useState("");
+  const [answers, setAnswers] = useState([]);
+
+  function SendDataQuestion() {
+    setDoc(doc(db, "questions", Date.now().toString(36)), {
+      answer: answers,
+      category: category,
+      links: { link: "google.com", text: "google" },
+      location: location,
+      question: question,
+      subCategory: subCategory,
+    })
+      .then(console.log)
+      .catch(console.log);
+  }
+
   function SignOut() {
     signOut(auth).then(console.log);
   }
@@ -58,7 +103,11 @@ export function Admin() {
               <Input onChange={(e) => setSubCategory(e.target.value)} />
             </VStack>
           </Flex>
-          <MuiltChoose />
+          <MuiltChoose func={setAnswers} data={answers} />
+          <Flex justifyContent={"space-between"}>
+            <Box />
+            <Button onClick={SendDataQuestion}>Хадгалах</Button>
+          </Flex>
         </VStack>
       </Flex>
     </Flex>
