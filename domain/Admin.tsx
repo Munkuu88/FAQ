@@ -12,8 +12,9 @@ import { signOut } from "firebase/auth";
 import { auth, db } from "../firebase/clientApp";
 import { maxWidth } from "../theme";
 import { useUser } from "../context";
-import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 
 const MuiltChoose = ({ func, data }: any) => {
   const [value, setValue] = useState("");
@@ -21,7 +22,6 @@ const MuiltChoose = ({ func, data }: any) => {
   function Add() {
     func([...data, value]);
   }
-  console.log("ss", data);
 
   return (
     <VStack alignItems={"unset"} w={"49%"}>
@@ -47,6 +47,31 @@ const MuiltChoose = ({ func, data }: any) => {
   );
 };
 
+const DeleteNavbar = () => {
+  const [questions, setQuestions] = useState<any>([]);
+
+  useEffect(() => {
+    onSnapshot(collection(db, "questions"), (snapshot) =>
+      setQuestions(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    );
+  }, []);
+
+  function Delete(id: any) {
+    deleteDoc(doc(db, "questions", `${id}`));
+  }
+
+  return (
+    <VStack alignItems={"unset"}>
+      {questions.map((el: any) => (
+        <VStack>
+          <Text key={el.question}>{el.question}</Text>
+          <Button onClick={() => Delete(el.id)}>Устгах</Button>
+        </VStack>
+      ))}
+    </VStack>
+  );
+};
+
 export function Admin() {
   const { user } = useUser();
   const [question, setQuestion] = useState("");
@@ -54,6 +79,11 @@ export function Admin() {
   const [location, setLocation] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [answers, setAnswers] = useState([]);
+  const [navbar, setNavbar] = useState(0);
+
+  const dynamicId =
+    Date.now().toString(36) +
+    Math.floor(Math.random() * 1000 * 1000).toString(16);
 
   function SendDataQuestion() {
     setDoc(doc(db, "questions", Date.now().toString(36)), {
@@ -71,44 +101,58 @@ export function Admin() {
   function SignOut() {
     signOut(auth).then(console.log);
   }
-  const NavbarItem = ["Асуулт нэмэх", "Асуулт харах"];
+  const NavbarItem = [
+    { text: "Асуулт нэмэх", id: 0 },
+    { text: "Асуулт устгах", id: 1 },
+    { text: "Хэрэглэгчдийн хайлтыг харах", id: 2 },
+  ];
 
   return user && user.accessToken ? (
     <Flex justifyContent={"center"} w={"100%"}>
       <Flex justifyContent={"space-between"} maxWidth={maxWidth} w="100%">
         <VStack w="30%" h="50vh" alignItems={"unset"}>
           {NavbarItem.map((el) => {
-            return <Text key={el}>{el}</Text>;
+            return (
+              <Text key={el.id} onClick={() => setNavbar(el.id)}>
+                {el.text}
+              </Text>
+            );
           })}
           <Text onClick={SignOut}>Login</Text>
         </VStack>
-        <VStack alignItems={"unset"} w={"68%"}>
-          <Flex justifyContent={"space-between"}>
-            <VStack w={"49%"} alignItems={"unset"}>
-              <Text>Асуулт</Text>
-              <Input onChange={(e) => setQuestion(e.target.value)} />
-            </VStack>
-            <VStack w={"49%"} alignItems={"unset"}>
-              <Text>Холбогдох газар</Text>
-              <Input onChange={(e) => setLocation(e.target.value)} />
-            </VStack>
-          </Flex>
-          <Flex justifyContent={"space-between"}>
-            <VStack w={"49%"} alignItems={"unset"}>
-              <Text>Категори</Text>
-              <Input onChange={(e) => setCategory(e.target.value)} />
-            </VStack>
-            <VStack w={"49%"} alignItems={"unset"}>
-              <Text>Дэд категори</Text>
-              <Input onChange={(e) => setSubCategory(e.target.value)} />
-            </VStack>
-          </Flex>
-          <MuiltChoose func={setAnswers} data={answers} />
-          <Flex justifyContent={"space-between"}>
-            <Box />
-            <Button onClick={SendDataQuestion}>Хадгалах</Button>
-          </Flex>
-        </VStack>
+        {navbar == 0 ? (
+          <VStack alignItems={"unset"} w={"68%"}>
+            <Flex justifyContent={"space-between"}>
+              <VStack w={"49%"} alignItems={"unset"}>
+                <Text>Асуулт</Text>
+                <Input onChange={(e) => setQuestion(e.target.value)} />
+              </VStack>
+              <VStack w={"49%"} alignItems={"unset"}>
+                <Text>Холбогдох газар</Text>
+                <Input onChange={(e) => setLocation(e.target.value)} />
+              </VStack>
+            </Flex>
+            <Flex justifyContent={"space-between"}>
+              <VStack w={"49%"} alignItems={"unset"}>
+                <Text>Категори</Text>
+                <Input onChange={(e) => setCategory(e.target.value)} />
+              </VStack>
+              <VStack w={"49%"} alignItems={"unset"}>
+                <Text>Дэд категори</Text>
+                <Input onChange={(e) => setSubCategory(e.target.value)} />
+              </VStack>
+            </Flex>
+            <MuiltChoose func={setAnswers} data={answers} />
+            <Flex justifyContent={"space-between"}>
+              <Box />
+              <Button onClick={SendDataQuestion}>Хадгалах</Button>
+            </Flex>
+          </VStack>
+        ) : navbar == 1 ? (
+          <DeleteNavbar />
+        ) : (
+          ""
+        )}
       </Flex>
     </Flex>
   ) : (

@@ -149,7 +149,6 @@ export function Search(sortLink: any) {
   };
 
   useEffect(() => {
-    console.log(sortLink);
     if (sortLink.sortLink == undefined) {
       onSnapshot(collection(db, "questions"), (snapshot) =>
         setSortGetData(snapshot.docs.map((doc) => doc.data()))
