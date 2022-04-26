@@ -365,7 +365,11 @@ export function Admin() {
                 <Select onChange={(e) => setCategory(e.target.value)}>
                   <option>Категори сонгоно уу?</option>
                   {categorySelect.map((el: any) => {
-                    return <option value={el.category}>{el.category}</option>;
+                    return (
+                      <option key={el.category} value={el.category}>
+                        {el.category}
+                      </option>
+                    );
                   })}
                 </Select>
               </VStack>
@@ -381,9 +385,16 @@ export function Admin() {
                   })
                   .map((el: any) => {
                     return (
-                      <Select onChange={(e) => setSubCategory(e.target.value)}>
+                      <Select
+                        key={el.category}
+                        onChange={(e) => setSubCategory(e.target.value)}
+                      >
                         {el.subCategory.map((el: any) => {
-                          return <option value={el.text}>{el.text}</option>;
+                          return (
+                            <option key={el.text} value={el.text}>
+                              {el.text}
+                            </option>
+                          );
                         })}
                       </Select>
                     );
