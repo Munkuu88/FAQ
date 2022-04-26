@@ -36,7 +36,7 @@ const CategoryBox = ({ detail }: any) => {
           <List>
             {detail.subCategory.map((el: any) => {
               return (
-                <Link href={`search?sort=${el.link}`} key={el.link}>
+                <Link href={`search?sort=${el.text}`} key={el.link}>
                   <HStack cursor={"pointer"} alignItems={"center"}>
                     <Icon as={FaCheck} color="green.500" />
                     <Text>{el.text}</Text>

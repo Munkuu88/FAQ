@@ -7,6 +7,9 @@ import {
   Textarea,
   Button,
   Box,
+  Divider,
+  HStack,
+  Select,
 } from "@chakra-ui/react";
 import { signOut } from "firebase/auth";
 import { auth, db } from "../firebase/clientApp";
@@ -14,7 +17,9 @@ import { maxWidth } from "../theme";
 import { useUser } from "../context";
 import { useState, useEffect } from "react";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 const MuiltChoose = ({ func, data }: any) => {
   const [value, setValue] = useState("");
@@ -24,7 +29,7 @@ const MuiltChoose = ({ func, data }: any) => {
   }
 
   return (
-    <VStack alignItems={"unset"} w={"49%"}>
+    <VStack alignItems={"unset"} w={"100%"}>
       <VStack alignItems={"unset"}>
         <Text>Хариулт</Text>
         <Textarea
@@ -37,19 +42,90 @@ const MuiltChoose = ({ func, data }: any) => {
           <Button onClick={Add}>Нэмэх</Button>
         </Flex>
       </VStack>
-
-      <VStack alignItems={"unset"}>
-        {data.map((el: any) => (
-          <Text key={el}>{el}</Text>
-        ))}
+      <Text>Хариултууд</Text>
+      <VStack
+        alignItems={"unset"}
+        h="10vh"
+        overflowY={"scroll"}
+        border="0.5px solid gray"
+        borderRadius={"2xl"}
+        p="20px"
+      >
+        {data.length == 0 ? (
+          <Text color={"gray"}>Одоогоор нэмсэн хариулт байхгүй байна.</Text>
+        ) : (
+          data.map((el: any) => <Text key={el}>{el}</Text>)
+        )}
       </VStack>
+    </VStack>
+  );
+};
+
+const GetLink = ({ func, data }: any) => {
+  const [text, setText] = useState("");
+  const [link, setLink] = useState("");
+
+  function Add() {
+    func([...data, { text: text, link: link }]);
+  }
+
+  return (
+    <VStack
+      alignItems={"unset"}
+      w={"100%"}
+      border="0.5px solid gray"
+      borderRadius={"2xl"}
+      p="20px"
+    >
+      <HStack>
+        <VStack alignItems={"unset"} w="100%">
+          <Text>Link текст</Text>
+          <Input
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          />
+        </VStack>
+        <VStack alignItems={"unset"} w="100%">
+          <Text>Link</Text>
+          <Input
+            onChange={(e) => {
+              setLink(e.target.value);
+            }}
+          />
+        </VStack>
+      </HStack>
+      <Flex justifyContent={"space-between"}>
+        <Box />
+        <Button onClick={Add}>Нэмэх</Button>
+      </Flex>
+      <Text>Холбогдох холбоосууд</Text>
+      <HStack
+        p="20px"
+        alignItems={"unset"}
+        overflowY={"scroll"}
+        border="0.5px solid gray"
+        borderRadius={"2xl"}
+      >
+        {data.length == 0 ? (
+          <Text color={"gray"}>Одоогоор нэмсэн холбоос байхгүй байна.</Text>
+        ) : (
+          data.map((el: any) => (
+            <Link key={el.link} href={el.link}>
+              <a target={"_blank"}>
+                <Text textDecoration="underline">{el.text}</Text>
+              </a>
+            </Link>
+          ))
+        )}
+      </HStack>
     </VStack>
   );
 };
 
 const DeleteNavbar = () => {
   const [questions, setQuestions] = useState<any>([]);
-
+  const [searchWord, setSearchWord] = useState("");
   useEffect(() => {
     onSnapshot(collection(db, "questions"), (snapshot) =>
       setQuestions(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
@@ -61,13 +137,114 @@ const DeleteNavbar = () => {
   }
 
   return (
-    <VStack alignItems={"unset"}>
-      {questions.map((el: any) => (
-        <VStack>
-          <Text key={el.question}>{el.question}</Text>
-          <Button onClick={() => Delete(el.id)}>Устгах</Button>
-        </VStack>
-      ))}
+    <VStack
+      alignItems={"unset"}
+      w={"68%"}
+      spacing={"20px"}
+      borderRadius={"2xl"}
+      boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px;"}
+      p="40px"
+    >
+      <Flex justifyContent={"space-between"}>
+        <Box />
+        <Input
+          w="300px"
+          onChange={(e) => setSearchWord(e.target.value)}
+          placeholder="Хайх асуултаа оруулна уу?"
+        />
+      </Flex>
+      <Text fontWeight={"semibold"} fontSize={"xl"}>
+        Асуултууд
+      </Text>
+      <VStack
+        alignItems={"unset"}
+        spacing={"20px"}
+        h="50vh"
+        overflowY={"scroll"}
+      >
+        {questions
+          .filter((val: any) => {
+            if (searchWord == "") {
+              return val;
+            } else if (
+              val.question.toLowerCase().includes(searchWord.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((el: any) => (
+            <VStack alignItems={"unset"} key={el.id}>
+              <Text key={el.question}>{el.question}</Text>
+              <Flex justifyContent={"space-between"}>
+                <Box />
+                <Button w="fit-content" onClick={() => Delete(el.id)}>
+                  Устгах
+                </Button>
+              </Flex>
+              <Divider />
+            </VStack>
+          ))}
+      </VStack>
+    </VStack>
+  );
+};
+
+const UserQuestions = () => {
+  const [userQuestions, setUserQuestions] = useState<any>([]);
+  const [searchWord, setSearchWord] = useState<any>("");
+
+  useEffect(() => {
+    onSnapshot(collection(db, "userQuestions"), (snapshot) =>
+      setUserQuestions(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      )
+    );
+  }, []);
+
+  function Delete(id: any) {
+    deleteDoc(doc(db, "userQuestions", `${id}`));
+  }
+
+  return (
+    <VStack
+      alignItems={"unset"}
+      w={"68%"}
+      boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px;"}
+      p="40px"
+      borderRadius={"2xl"}
+    >
+      <Flex justifyContent={"space-between"}>
+        <Box />
+        <Input
+          w="300px"
+          placeholder="Хайх"
+          onChange={(e) => setSearchWord(e.target.value)}
+        />
+      </Flex>
+      <Text fontWeight={"semibold"} fontSize={"xl"}>
+        Хэрэглэгчийн хайсан хайлтууд
+      </Text>
+      {userQuestions
+        .filter((val: any) => {
+          if (searchWord == "") {
+            return val;
+          } else if (
+            val.question.toLowerCase().includes(searchWord.toLowerCase())
+          ) {
+            return val;
+          }
+        })
+        .map((el: any) => {
+          return (
+            <Box key={el.id}>
+              <Text>{el.question}</Text>
+              <Flex justifyContent={"space-between"} pb="10px">
+                <Box /> <Button onClick={() => Delete(el.id)}>Устгах</Button>
+              </Flex>
+              <Divider />
+            </Box>
+          );
+        })}
     </VStack>
   );
 };
@@ -79,21 +256,31 @@ export function Admin() {
   const [location, setLocation] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [answers, setAnswers] = useState([]);
+  const [links, setLinks] = useState([]);
   const [navbar, setNavbar] = useState(0);
+  const [categorySelect, setCategorySelect] = useState<any>([]);
 
-  const dynamicId =
-    Date.now().toString(36) +
-    Math.floor(Math.random() * 1000 * 1000).toString(16);
+  categorySelect.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
+
+  const MotionText = motion(Text);
 
   function SendDataQuestion() {
-    setDoc(doc(db, "questions", Date.now().toString(36)), {
-      answer: answers,
-      category: category,
-      links: { link: "google.com", text: "google" },
-      location: location,
-      question: question,
-      subCategory: subCategory,
-    })
+    setDoc(
+      doc(
+        db,
+        "questions",
+        Date.now().toString(36) +
+          Math.floor(Math.random() * 1000 * 1000).toString(16)
+      ),
+      {
+        answer: answers,
+        category: category,
+        links: links,
+        location: location,
+        question: question,
+        subCategory: subCategory,
+      }
+    )
       .then(console.log)
       .catch(console.log);
   }
@@ -107,21 +294,60 @@ export function Admin() {
     { text: "Хэрэглэгчдийн хайлтыг харах", id: 2 },
   ];
 
+  useEffect(() => {
+    onSnapshot(collection(db, "categories"), (snapshot) =>
+      setCategorySelect(snapshot.docs.map((doc) => doc.data()))
+    );
+  }, []);
+
   return user && user.accessToken ? (
-    <Flex justifyContent={"center"} w={"100%"}>
+    <Flex justifyContent={"center"} w={"100%"} py="40px">
       <Flex justifyContent={"space-between"} maxWidth={maxWidth} w="100%">
-        <VStack w="30%" h="50vh" alignItems={"unset"}>
-          {NavbarItem.map((el) => {
-            return (
-              <Text key={el.id} onClick={() => setNavbar(el.id)}>
-                {el.text}
-              </Text>
-            );
-          })}
-          <Text onClick={SignOut}>Login</Text>
-        </VStack>
+        <Flex
+          w="30%"
+          h="50vh"
+          p="40px"
+          flexDir={"column"}
+          justifyContent={"space-between"}
+          borderRadius={"2xl"}
+          boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px;"}
+        >
+          <VStack spacing={"20px"} alignItems={"unset"}>
+            {NavbarItem.map((el) => {
+              return (
+                <MotionText
+                  key={el.id}
+                  onClick={() => setNavbar(el.id)}
+                  whileHover={{ scale: 1.03 }}
+                  cursor={"pointer"}
+                  px="20px"
+                  py="10px"
+                  borderRadius={"xl"}
+                  fontWeight={el.id == navbar ? "semibold" : ""}
+                  color={el.id == navbar ? "white" : "black"}
+                  bg={el.id == navbar ? "#1b4587" : "#f2f2f2"}
+                >
+                  {el.text}
+                </MotionText>
+              );
+            })}
+          </VStack>
+          <Flex justifyContent={"space-between"}>
+            <Box />
+            <Button onClick={SignOut} colorScheme={"red"} px="20px" py="10px">
+              Гарах
+            </Button>
+          </Flex>
+        </Flex>
         {navbar == 0 ? (
-          <VStack alignItems={"unset"} w={"68%"}>
+          <VStack
+            alignItems={"unset"}
+            w={"68%"}
+            borderRadius={"2xl"}
+            boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px;"}
+            p="40px"
+            spacing={"20px"}
+          >
             <Flex justifyContent={"space-between"}>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Асуулт</Text>
@@ -132,17 +358,39 @@ export function Admin() {
                 <Input onChange={(e) => setLocation(e.target.value)} />
               </VStack>
             </Flex>
+            <MuiltChoose func={setAnswers} data={answers} />
             <Flex justifyContent={"space-between"}>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Категори</Text>
-                <Input onChange={(e) => setCategory(e.target.value)} />
+                <Select onChange={(e) => setCategory(e.target.value)}>
+                  <option>Категори сонгоно уу?</option>
+                  {categorySelect.map((el: any) => {
+                    return <option value={el.category}>{el.category}</option>;
+                  })}
+                </Select>
               </VStack>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Дэд категори</Text>
-                <Input onChange={(e) => setSubCategory(e.target.value)} />
+                {categorySelect
+                  .filter((val: any) => {
+                    if (category == "") {
+                      return <></>;
+                    } else if (category == val.category) {
+                      return val;
+                    }
+                  })
+                  .map((el: any) => {
+                    return (
+                      <Select onChange={(e) => setSubCategory(e.target.value)}>
+                        {el.subCategory.map((el: any) => {
+                          return <option value={el.text}>{el.text}</option>;
+                        })}
+                      </Select>
+                    );
+                  })}
               </VStack>
             </Flex>
-            <MuiltChoose func={setAnswers} data={answers} />
+            <GetLink data={links} func={setLinks} />
             <Flex justifyContent={"space-between"}>
               <Box />
               <Button onClick={SendDataQuestion}>Хадгалах</Button>
@@ -151,7 +399,7 @@ export function Admin() {
         ) : navbar == 1 ? (
           <DeleteNavbar />
         ) : (
-          ""
+          <UserQuestions />
         )}
       </Flex>
     </Flex>

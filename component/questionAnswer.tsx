@@ -65,9 +65,9 @@ const QuestionAnswerDetail = ({
         </h2>
         <AccordionPanel pb={4}>
           <List>
-            {answers.map((el: string, ind: number) => {
+            {answers.map((el: string) => {
               return (
-                <ListItem key={ind} py="10px">
+                <ListItem key={el} py="10px">
                   <HStack>
                     <Text>-</Text>
                     <Text>{el}</Text>
@@ -132,7 +132,7 @@ export function QuestionAnswer({
             .map((el: any) => {
               return (
                 <QuestionAnswerDetail
-                  key={el.id}
+                  key={el.question}
                   question={el.question}
                   answers={el.answer}
                   setOpen={setOpen}

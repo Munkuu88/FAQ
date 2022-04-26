@@ -22,7 +22,6 @@ export function Login() {
     signInWithEmailAndPassword(auth, userName, password)
       .then((userCredential) => {
         setUserData(userCredential.user);
-        console.log("user", userCredential.user);
         setUser(userCredential.user);
       })
       .catch((err) => {

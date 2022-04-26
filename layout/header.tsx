@@ -3,7 +3,7 @@ import { maxWidth } from "../theme";
 import Link from "next/link";
 
 const details = [
-  { text: "Асуулт нэмэх", link: "/addQuestion" },
+  { text: "Admin", link: "/login" },
   { text: "Хайх", link: "/search" },
 ];
 

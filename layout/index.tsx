@@ -8,19 +8,19 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/dist/client/router";
 
 export default function Layout({ Component, pageProps }: any) {
-  const { user, setUser } = useUser();
+  const { setUser, user } = useUser();
   const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
-      if (user) {
+      if (user && router.pathname == "/login") {
         router.push("/admin");
-      } else {
+      } else if (!user && router.pathname == "/admin") {
         router.push("/login");
       }
     });
-  }, []);
+  }, [user]);
 
   return (
     <Flex flexDir={"column"} minH={"100vh"}>

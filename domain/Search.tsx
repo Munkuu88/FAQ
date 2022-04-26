@@ -32,6 +32,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/clientApp";
 import { useEffect, useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
 
 const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
   const [id, setId] = useState<number>();
@@ -49,11 +50,10 @@ const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
       <AccordionPanel pb={4}>
         <List>
           {subCategory.map((el: any, ind: number) => {
-            console.log(ind);
             return (
               <Flex
                 onClick={() => {
-                  setSortState(el.link), setSort(true), setId(ind);
+                  setSortState(el.text), setSort(true), setId(ind);
                 }}
                 key={el.link}
                 py="5px"
@@ -124,6 +124,22 @@ export function Search(sortLink: any) {
   const [searchTerm, setSearchTerm] = useState("");
   const [questionSort, setQuestionSort] = useState("");
   const [buttonActive, setButtonActive] = useState(false);
+
+  const SaveUserQuestion = () => {
+    setDoc(
+      doc(
+        db,
+        "userQuestions",
+        Date.now().toString(36) +
+          Math.floor(Math.random() * 1000 * 1000).toString(16)
+      ),
+      {
+        question: searchTerm,
+      }
+    )
+      .then(console.log)
+      .catch(console.log);
+  };
 
   useEffect(() => {
     onSnapshot(collection(db, "categories"), (snapshot) =>
@@ -206,7 +222,14 @@ export function Search(sortLink: any) {
                 }}
                 placeholder={"Хайх асуултаа оруулна уу"}
               />
-              <Button onClick={() => setQuestionSort(searchTerm)}>Хайх</Button>
+              <Button
+                onClick={() => {
+                  setQuestionSort(searchTerm);
+                  SaveUserQuestion();
+                }}
+              >
+                Хайх
+              </Button>
             </HStack>
           </Flex>
           <QuestionAnswer
