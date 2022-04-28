@@ -444,6 +444,7 @@ export function Admin() {
                         key={el.category}
                         onChange={(e) => setSubCategory(e.target.value)}
                       >
+                        <option>Дэд категоригийг сонгоно уу?</option>
                         {el.subCategory.map((el: any) => {
                           return (
                             <option key={el.text} value={el.text}>
