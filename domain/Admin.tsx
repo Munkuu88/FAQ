@@ -20,12 +20,14 @@ import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { collection, onSnapshot } from "firebase/firestore";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Toaster } from "../component/toast";
 
-const MuiltChoose = ({ func, data }: any) => {
+const MuiltChoose = ({ func, data, loadingButton }: any) => {
   const [value, setValue] = useState("");
 
   function Add() {
     func([...data, value]);
+    setValue("");
   }
 
   return (
@@ -33,13 +35,19 @@ const MuiltChoose = ({ func, data }: any) => {
       <VStack alignItems={"unset"}>
         <Text>Хариулт</Text>
         <Textarea
+          value={value}
           onChange={(e) => {
             setValue(e.target.value);
           }}
         />
         <Flex justifyContent={"space-between"}>
           <Box />
-          <Button onClick={Add}>Нэмэх</Button>
+          <Button
+            onClick={Add}
+            isDisabled={loadingButton || value == "" ? true : false}
+          >
+            Нэмэх
+          </Button>
         </Flex>
       </VStack>
       <Text>Хариултууд</Text>
@@ -61,12 +69,14 @@ const MuiltChoose = ({ func, data }: any) => {
   );
 };
 
-const GetLink = ({ func, data }: any) => {
+const GetLink = ({ func, data, loadingButton }: any) => {
   const [text, setText] = useState("");
   const [link, setLink] = useState("");
 
   function Add() {
     func([...data, { text: text, link: link }]);
+    setText("");
+    setLink("");
   }
 
   return (
@@ -81,6 +91,7 @@ const GetLink = ({ func, data }: any) => {
         <VStack alignItems={"unset"} w="100%">
           <Text>Link текст</Text>
           <Input
+            value={text}
             onChange={(e) => {
               setText(e.target.value);
             }}
@@ -89,6 +100,7 @@ const GetLink = ({ func, data }: any) => {
         <VStack alignItems={"unset"} w="100%">
           <Text>Link</Text>
           <Input
+            value={link}
             onChange={(e) => {
               setLink(e.target.value);
             }}
@@ -97,7 +109,12 @@ const GetLink = ({ func, data }: any) => {
       </HStack>
       <Flex justifyContent={"space-between"}>
         <Box />
-        <Button onClick={Add}>Нэмэх</Button>
+        <Button
+          onClick={Add}
+          isDisabled={loadingButton || link == "" || text == "" ? true : false}
+        >
+          Нэмэх
+        </Button>
       </Flex>
       <Text>Холбогдох холбоосууд</Text>
       <HStack
@@ -259,12 +276,15 @@ export function Admin() {
   const [links, setLinks] = useState([]);
   const [navbar, setNavbar] = useState(0);
   const [categorySelect, setCategorySelect] = useState<any>([]);
+  const [loadingButton, setloadingButton] = useState(false);
+  const [logOutLoader, setLogOutLoader] = useState(false);
 
   categorySelect.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
 
   const MotionText = motion(Text);
 
   function SendDataQuestion() {
+    setloadingButton(true);
     setDoc(
       doc(
         db,
@@ -281,12 +301,31 @@ export function Admin() {
         subCategory: subCategory,
       }
     )
-      .then(console.log)
-      .catch(console.log);
+      .then(() => {
+        console.log, setloadingButton(false);
+        setQuestion("");
+        setCategory("");
+        setLocation("");
+        setSubCategory("");
+        setAnswers([]);
+        setLinks([]);
+        Toaster({
+          title: "Асуулт амжилттай нэмэгдлээ.",
+          desc: "",
+          status: "success",
+          start: loadingButton,
+        });
+      })
+      .catch(() => {
+        console.log, setloadingButton(false);
+      });
   }
 
   function SignOut() {
-    signOut(auth).then(console.log);
+    setLogOutLoader(true);
+    signOut(auth).then(() => {
+      setLogOutLoader(false), console.log;
+    });
   }
   const NavbarItem = [
     { text: "Асуулт нэмэх", id: 0 },
@@ -334,7 +373,13 @@ export function Admin() {
           </VStack>
           <Flex justifyContent={"space-between"}>
             <Box />
-            <Button onClick={SignOut} colorScheme={"red"} px="20px" py="10px">
+            <Button
+              onClick={SignOut}
+              isLoading={logOutLoader}
+              colorScheme={"red"}
+              px="20px"
+              py="10px"
+            >
               Гарах
             </Button>
           </Flex>
@@ -351,14 +396,24 @@ export function Admin() {
             <Flex justifyContent={"space-between"}>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Асуулт</Text>
-                <Input onChange={(e) => setQuestion(e.target.value)} />
+                <Input
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                />
               </VStack>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Холбогдох газар</Text>
-                <Input onChange={(e) => setLocation(e.target.value)} />
+                <Input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
               </VStack>
             </Flex>
-            <MuiltChoose func={setAnswers} data={answers} />
+            <MuiltChoose
+              func={setAnswers}
+              data={answers}
+              loadingButton={loadingButton}
+            />
             <Flex justifyContent={"space-between"}>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Категори</Text>
@@ -401,10 +456,16 @@ export function Admin() {
                   })}
               </VStack>
             </Flex>
-            <GetLink data={links} func={setLinks} />
+            <GetLink
+              data={links}
+              func={setLinks}
+              loadingButton={loadingButton}
+            />
             <Flex justifyContent={"space-between"}>
               <Box />
-              <Button onClick={SendDataQuestion}>Хадгалах</Button>
+              <Button isLoading={loadingButton} onClick={SendDataQuestion}>
+                Хадгалах
+              </Button>
             </Flex>
           </VStack>
         ) : navbar == 1 ? (

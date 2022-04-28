@@ -23,6 +23,7 @@ import {
 import { useEffect, useState } from "react";
 import { db } from "../firebase/clientApp";
 import { collection, getDocs } from "firebase/firestore";
+import { LoaderQuestion } from "./loaders/question";
 
 const LocationModal = ({ open, setOpen, location }: any) => {
   const size = useBreakpointValue({ xs: "xs", md: "md" });
@@ -118,29 +119,34 @@ export function QuestionAnswer({
   return (
     <>
       <Accordion allowToggle w={"100%"} defaultIndex={[1]}>
-        {sortGetData &&
-          sortGetData
-            .filter((val: any) => {
-              if (questionSort == "") {
-                return val;
-              } else if (
-                val.question.toLowerCase().includes(questionSort.toLowerCase())
-              ) {
-                return val;
-              }
-            })
-            .map((el: any) => {
-              return (
-                <QuestionAnswerDetail
-                  key={el.question}
-                  question={el.question}
-                  answers={el.answer}
-                  setOpen={setOpen}
-                  open={open}
-                  setLocation={setLocation}
-                  place={el.location}
-                />
-              );
+        {sortGetData
+          ? sortGetData
+              .filter((val: any) => {
+                if (questionSort == "") {
+                  return val;
+                } else if (
+                  val.question
+                    .toLowerCase()
+                    .includes(questionSort.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((el: any) => {
+                return (
+                  <QuestionAnswerDetail
+                    key={el.question}
+                    question={el.question}
+                    answers={el.answer}
+                    setOpen={setOpen}
+                    open={open}
+                    setLocation={setLocation}
+                    place={el.location}
+                  />
+                );
+              })
+          : [0, 1, 2, 3, 4].map((el) => {
+              return <LoaderQuestion key={el} />;
             })}
       </Accordion>
       <LocationModal open={open} setOpen={setOpen} location={location} />

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { db } from "../firebase/clientApp";
 import Link from "next/link";
+import { CategoryBoxLoader } from "./loaders/categoryBox";
 
 const CategoryBox = ({ detail }: any) => {
   const [show, setShow] = useState(false);
@@ -55,22 +56,26 @@ const CategoryBox = ({ detail }: any) => {
 };
 
 export function CategoryBoxs() {
-  const [categoryData, setCategoryData] = useState<any>([]);
+  const [categoryData, setCategoryData] = useState<any>();
 
   useEffect(() => {
     onSnapshot(collection(db, "categories"), (snapshot) =>
       setCategoryData(snapshot.docs.map((doc) => doc.data()))
     );
   }, []);
-
-  categoryData.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
+  if (categoryData) {
+    categoryData.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
+  }
 
   return (
     <SimpleGrid columns={[1, 3]} gap={[6, 8]}>
-      {categoryData &&
-        categoryData.map((el: any) => {
-          return <CategoryBox key={el.category} detail={el} />;
-        })}
+      {categoryData
+        ? categoryData.map((el: any) => {
+            return <CategoryBox key={el.category} detail={el} />;
+          })
+        : [0, 1, 2, 3, 4, 5, 6, 7, 8].map((el) => {
+            return <CategoryBoxLoader key={el} />;
+          })}
     </SimpleGrid>
   );
 }

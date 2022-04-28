@@ -33,8 +33,15 @@ import {
 import { db } from "../firebase/clientApp";
 import { useEffect, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
+import { LoaderCategory } from "../component/loaders/category";
 
-const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
+const Filter = ({
+  category,
+  subCategory,
+  setSortState,
+  setSort,
+  onClose,
+}: any) => {
   const [id, setId] = useState<number>();
 
   return (
@@ -53,7 +60,7 @@ const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
             return (
               <Flex
                 onClick={() => {
-                  setSortState(el.text), setSort(true), setId(ind);
+                  setSortState(el.text), setSort(true), setId(ind), onClose();
                 }}
                 key={el.link}
                 py="5px"
@@ -71,7 +78,7 @@ const Filter = ({ category, subCategory, setSortState, setSort }: any) => {
   );
 };
 
-const FilterDrawer = ({ isOpen, onClose, setSortState }: any) => {
+const FilterDrawer = ({ isOpen, onClose, setSortState, setSort }: any) => {
   const [filters, setFilters] = useState<any>([]);
 
   useEffect(() => {
@@ -94,6 +101,8 @@ const FilterDrawer = ({ isOpen, onClose, setSortState }: any) => {
               {filters.map((el: any) => {
                 return (
                   <Filter
+                    onClose={onClose}
+                    setSort={setSort}
                     key={el.category}
                     setSortState={setSortState}
                     category={el.category}
@@ -108,7 +117,6 @@ const FilterDrawer = ({ isOpen, onClose, setSortState }: any) => {
           <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="blue">Save</Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -117,7 +125,7 @@ const FilterDrawer = ({ isOpen, onClose, setSortState }: any) => {
 
 export function Search(sortLink: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [filters, setFilters] = useState<any>([]);
+  const [filters, setFilters] = useState<any>();
   const [sortState, setSortState] = useState<any>([]);
   const [sortGetData, setSortGetData] = useState<any>();
   const [sort, setSort] = useState<any>(false);
@@ -146,8 +154,9 @@ export function Search(sortLink: any) {
       setFilters(snapshot.docs.map((doc) => doc.data()))
     );
   }, []);
-
-  filters.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
+  if (filters) {
+    filters.sort((a: any, b: any) => (a.category > b.category ? 1 : -1));
+  }
 
   const q = query(
     collection(db, "questions"),
@@ -195,17 +204,22 @@ export function Search(sortLink: any) {
       >
         <VStack w={"25%"} display={["none", "flex"]}>
           <Accordion w={"100%"} defaultIndex={[0]}>
-            {filters.map((el: any) => {
-              return (
-                <Filter
-                  setSort={setSort}
-                  key={el.category}
-                  setSortState={setSortState}
-                  category={el.category}
-                  subCategory={el.subCategory}
-                />
-              );
-            })}
+            {filters ? (
+              filters.map((el: any) => {
+                return (
+                  <Filter
+                    setSort={setSort}
+                    key={el.category}
+                    setSortState={setSortState}
+                    category={el.category}
+                    subCategory={el.subCategory}
+                    onClose={() => {}}
+                  />
+                );
+              })
+            ) : (
+              <LoaderCategory />
+            )}
           </Accordion>
         </VStack>
         <VStack w={["100%", "73%"]}>
@@ -252,6 +266,7 @@ export function Search(sortLink: any) {
           Filter
         </Button>
         <FilterDrawer
+          setSort={setSort}
           isOpen={isOpen}
           onOpen={onOpen}
           onClose={onClose}

@@ -11,22 +11,37 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/clientApp";
 import { useUser } from "../context";
+import { Toaster } from "../component/toast";
 
 export function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState<any>();
+  const [loaderButton, setLoaderButton] = useState(false);
   const { setUser } = useUser();
 
   function SignIn() {
+    setLoaderButton(true);
     signInWithEmailAndPassword(auth, userName, password)
       .then((userCredential) => {
         setUserData(userCredential.user);
         setUser(userCredential.user);
+        setLoaderButton(false);
+        Toaster({
+          title: "Админ хуудас руу амжилттай нэвтэрлээ.",
+          desc: "",
+          status: "success",
+        });
       })
       .catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
+        setLoaderButton(false);
+        Toaster({
+          title: "Алдаа гарлаа.",
+          desc: "Аль нэг талбар буруу бөглөгдсөн байна.",
+          status: "error",
+        });
       });
   }
 
@@ -60,7 +75,7 @@ export function Login() {
           <Text>Password</Text>
           <PasswordInput setPassword={setPassword} />
         </VStack>
-        <Button onClick={SignIn} colorScheme={"blue"}>
+        <Button onClick={SignIn} isLoading={loaderButton} colorScheme={"blue"}>
           Нэвтрэх
         </Button>
       </VStack>
