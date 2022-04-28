@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase/clientApp";
 import { collection, getDocs } from "firebase/firestore";
 import { LoaderQuestion } from "./loaders/question";
+import Link from "next/link";
 
 const LocationModal = ({ open, setOpen, location }: any) => {
   const size = useBreakpointValue({ xs: "xs", md: "md" });
@@ -36,7 +37,9 @@ const LocationModal = ({ open, setOpen, location }: any) => {
           <ModalHeader alignItems={"center"}>
             Холбоо барих газар болон мэдээлэл <ModalCloseButton />
           </ModalHeader>
-          <ModalBody>{location}</ModalBody>
+          <ModalBody>
+            {location == "" ? "Мэдээлэл байхгүй байна" : location}
+          </ModalBody>
           <ModalFooter>
             <Button onClick={() => setOpen(false)}>Буцах</Button>
           </ModalFooter>
@@ -52,7 +55,9 @@ const QuestionAnswerDetail = ({
   setOpen,
   setLocation,
   place,
+  links,
 }: any) => {
+  console.log(links);
   return (
     <Box py="10px">
       <AccordionItem border="none" bg="#f7f7f7" borderRadius={"10px"}>
@@ -74,6 +79,21 @@ const QuestionAnswerDetail = ({
                     <Text>{el}</Text>
                   </HStack>
                 </ListItem>
+              );
+            })}
+            {links.map((el: any) => {
+              return (
+                <Link href={el.link} key={el.link}>
+                  <a target={"_blank"} style={{ width: "fit-content" }}>
+                    <Text
+                      w="fit-content"
+                      textDecoration={"underline"}
+                      color={"blue"}
+                    >
+                      {el.text}
+                    </Text>
+                  </a>
+                </Link>
               );
             })}
           </List>
@@ -136,6 +156,7 @@ export function QuestionAnswer({
                 return (
                   <QuestionAnswerDetail
                     key={el.question}
+                    links={el.links}
                     question={el.question}
                     answers={el.answer}
                     setOpen={setOpen}
