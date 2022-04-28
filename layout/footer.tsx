@@ -13,11 +13,19 @@ import { CgDetailsMore } from "react-icons/cg";
 import { MdLocationPin, MdEmail, MdPhone } from "react-icons/md";
 
 const details = [
-  { name: " БАЙГАЛЬ ЭХ ЛИЦЕЙ АХЛАХ СУРГУУЛЬ ", link: "/" },
-  { name: "ЭКОЛОГИЙН БОЛОВСРОЛЫН ТӨВ", link: "/" },
-  { name: " ДОТООД ДҮРЭМ ЖУРАМ", link: "/" },
-  { name: " ЗАХИРГААНЫ ЗӨВЛӨЛИЙН МЭДЭЭЛЭЛ", link: "/" },
-  { name: "АЖЛЫН БАЙР" },
+  { name: "ТЭТГЭЛЭГ", link: "https://news.num.edu.mn/?cat=30" },
+  {
+    name: "ДОТУУР УТАСНЫ ЖАГСААЛТ",
+    link: "https://www.num.edu.mn/sipcard/",
+  },
+  {
+    name: "ХОЛБОО БАРИХ",
+    link: "https://news.num.edu.mn/?page_id=27945",
+  },
+  {
+    name: "ЗАХИРГААНЫ ЗӨВЛӨЛИЙН МЭДЭЭЛЭЛ",
+    link: "https://news.num.edu.mn/?cat=76",
+  },
 ];
 
 const contacts = [
@@ -61,10 +69,12 @@ export function Footer() {
           {details.map((el, ind) => {
             return (
               <Link href={`${el.link}`} key={ind}>
-                <HStack cursor={"pointer"}>
-                  <Icon as={CgDetailsMore} />
-                  <Text fontSize={"sm"}>{el.name}</Text>
-                </HStack>
+                <a target={"_blank"}>
+                  <HStack cursor={"pointer"}>
+                    <Icon as={CgDetailsMore} />
+                    <Text fontSize={"sm"}>{el.name}</Text>
+                  </HStack>
+                </a>
               </Link>
             );
           })}
