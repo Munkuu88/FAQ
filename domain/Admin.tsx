@@ -22,6 +22,54 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Toaster } from "../component/toast";
 
+const LocationInput = ({ func, data, loadingButton }: any) => {
+  const [value, setValue] = useState("");
+
+  function Add() {
+    func([...data, value]);
+    setValue("");
+  }
+
+  return (
+    <VStack alignItems={"unset"} w={"100%"}>
+      <VStack alignItems={"unset"}>
+        <Input
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+        <Flex justifyContent={"space-between"}>
+          <Box />
+          <Button
+            onClick={Add}
+            isDisabled={loadingButton || value == "" ? true : false}
+          >
+            Нэмэх
+          </Button>
+        </Flex>
+      </VStack>
+      <Text>Байршилууд</Text>
+      <VStack
+        alignItems={"unset"}
+        h="10vh"
+        overflowY={"scroll"}
+        border="0.5px solid gray"
+        borderRadius={"2xl"}
+        p="20px"
+      >
+        {data.length == 0 ? (
+          <Text color={"gray"}>Одоогоор нэмсэн байршилууд байхгүй байна.</Text>
+        ) : (
+          data.map((el: any, ind: number) => {
+            return <Text key={el}>{el}</Text>;
+          })
+        )}
+      </VStack>
+    </VStack>
+  );
+};
+
 const MuiltChoose = ({ func, data, loadingButton }: any) => {
   const [value, setValue] = useState("");
 
@@ -62,7 +110,9 @@ const MuiltChoose = ({ func, data, loadingButton }: any) => {
         {data.length == 0 ? (
           <Text color={"gray"}>Одоогоор нэмсэн хариулт байхгүй байна.</Text>
         ) : (
-          data.map((el: any) => <Text key={el}>{el}</Text>)
+          data.map((el: any, ind: number) => {
+            return <Text key={el}>{el}</Text>;
+          })
         )}
       </VStack>
     </VStack>
@@ -403,9 +453,10 @@ export function Admin() {
               </VStack>
               <VStack w={"49%"} alignItems={"unset"}>
                 <Text>Холбогдох газар</Text>
-                <Input
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                <LocationInput
+                  func={setLocation}
+                  data={location}
+                  loadingButton={loadingButton}
                 />
               </VStack>
             </Flex>

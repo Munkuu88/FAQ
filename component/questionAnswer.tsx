@@ -38,7 +38,16 @@ const LocationModal = ({ open, setOpen, location }: any) => {
             Холбоо барих газар болон мэдээлэл <ModalCloseButton />
           </ModalHeader>
           <ModalBody>
-            {location == "" ? "Мэдээлэл байхгүй байна" : location}
+            {location == ""
+              ? "Мэдээлэл байхгүй байна"
+              : location.map((el: any, ind: number) => {
+                  return (
+                    <HStack alignItems={"unset"}>
+                      <Text>{ind + 1}. </Text>
+                      <Text>{el}</Text>
+                    </HStack>
+                  );
+                })}
           </ModalBody>
           <ModalFooter>
             <Button onClick={() => setOpen(false)}>Буцах</Button>
