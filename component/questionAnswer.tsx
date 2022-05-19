@@ -42,7 +42,7 @@ const LocationModal = ({ open, setOpen, location }: any) => {
               ? "Мэдээлэл байхгүй байна"
               : location.map((el: any, ind: number) => {
                   return (
-                    <HStack alignItems={"unset"}>
+                    <HStack alignItems={"unset"} key={el + ind}>
                       <Text>{ind + 1}. </Text>
                       <Text>{el}</Text>
                     </HStack>
@@ -161,10 +161,10 @@ export function QuestionAnswer({
                   return val;
                 }
               })
-              .map((el: any) => {
+              .map((el: any, ind: number) => {
                 return (
                   <QuestionAnswerDetail
-                    key={el.question}
+                    key={el.question + ind}
                     links={el.links}
                     question={el.question}
                     answers={el.answer}
